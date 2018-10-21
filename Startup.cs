@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Unosquare.RaspberryIO;
 
 namespace LampWebApi
 {
@@ -27,14 +28,24 @@ namespace LampWebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+                                IApplicationLifetime applicationLifetime)
         {
+            applicationLifetime.ApplicationStopping.Register(OnShutdown);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
             app.UseMvc();
+        }
+
+        private void OnShutdown()
+        {
+            Pi.Gpio[Program.RedPin].SoftPwmValue = 0;
+            Pi.Gpio[Program.GreenPin].SoftPwmValue = 0;
+            Pi.Gpio[Program.BluePin].SoftPwmValue = 0;
         }
     }
 }
