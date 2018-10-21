@@ -12,7 +12,10 @@ namespace LampWebApi
 {
     public class Program
     {
-        static string hostUrl;
+        static string HostUrl;
+        static int RedPin;
+        static int GreenPin;
+        static int BluePin;
 
         public static void Main(string[] args)
         {
@@ -20,18 +23,32 @@ namespace LampWebApi
                 .AddCommandLine(args)
                 .Build();
             
-            hostUrl = configuration["hosturl"];
-            if (string.IsNullOrEmpty(hostUrl))
+            HostUrl = configuration["hosturl"];
+
+            if (!int.TryParse(configuration["redpin"], out RedPin))
             {
-                hostUrl = "http://0.0.0.0:5000";
+                RedPin = 17;
+            }
+            if (!int.TryParse(configuration["greenpin"], out GreenPin))
+            {
+                GreenPin = 22;
+            }
+            if (!int.TryParse(configuration["bluepin"], out BluePin))
+            {
+                BluePin = 24;
             }
 
+            if (string.IsNullOrEmpty(HostUrl))
+            {
+                HostUrl = "http://0.0.0.0:5000";
+            }
+            
             BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls(hostUrl)
+                .UseUrls(HostUrl)
                 .UseStartup<Startup>()
                 .Build();
     }
