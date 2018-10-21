@@ -27,11 +27,15 @@ namespace LampWebApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]LampResponse colour)
         {
-            int redValue = Math.Max(Math.Min(colour.Red, 255), 0);
-            int greenValue = Math.Max(Math.Min(colour.Green, 255), 0);
-            int blueValue = Math.Max(Math.Min(colour.Blue, 255), 0);
+            int clampedRed = Math.Max(Math.Min(colour.Red, 255), 0);
+            int clampedGreen = Math.Max(Math.Min(colour.Green, 255), 0);
+            int clampedBlue = Math.Max(Math.Min(colour.Blue, 255), 0);
 
-            Console.WriteLine($"Changing colour to ({redValue}, {greenValue}, {blueValue})");
+            int redValue = (int)Math.Round((clampedRed * 100) / 255f);
+            int greenValue = (int)Math.Round((clampedGreen * 100) / 255f);
+            int blueValue = (int)Math.Round((clampedBlue * 100) / 255f);
+
+            Console.WriteLine($"Changing colour to ({clampedRed}, {clampedGreen}, {clampedBlue})");
 
             Pi.Gpio[Program.RedPin].SoftPwmValue = redValue;
             Pi.Gpio[Program.GreenPin].SoftPwmValue = greenValue;

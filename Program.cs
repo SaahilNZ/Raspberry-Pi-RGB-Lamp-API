@@ -66,9 +66,9 @@ namespace LampWebApi
             greenPin.PinMode = GpioPinDriveMode.Output;
             bluePin.PinMode = GpioPinDriveMode.Output;
 
-            redPin.StartSoftPwm(0, 255);
-            greenPin.StartSoftPwm(0, 255);
-            bluePin.StartSoftPwm(0, 255);
+            redPin.StartSoftPwm(0, 100);
+            greenPin.StartSoftPwm(0, 100);
+            bluePin.StartSoftPwm(0, 100);
         }
     }
 }
