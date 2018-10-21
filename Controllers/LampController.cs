@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Unosquare.RaspberryIO;
 
 namespace LampWebApi.Controllers
 {
@@ -11,15 +12,21 @@ namespace LampWebApi.Controllers
     {
         // GET api/lamp
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(new Dictionary<string, int>
+            {
+                { "red", Pi.Gpio[Program.RedPin].SoftPwmValue },
+                { "green", Pi.Gpio[Program.GreenPin].SoftPwmValue },
+                { "blue", Pi.Gpio[Program.BluePin].SoftPwmValue }
+            });
         }
 
-        // PUT api/lamp/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // POST api/lamp
+        [HttpPut()]
+        public void Post([FromBody]string value)
         {
+
         }
     }
 }

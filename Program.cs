@@ -7,15 +7,17 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Unosquare.RaspberryIO;
+using Unosquare.RaspberryIO.Gpio;
 
 namespace LampWebApi
 {
     public class Program
     {
         static string HostUrl;
-        static int RedPin;
-        static int GreenPin;
-        static int BluePin;
+        public static int RedPin;
+        public static int GreenPin;
+        public static int BluePin;
 
         public static void Main(string[] args)
         {
@@ -42,7 +44,9 @@ namespace LampWebApi
             {
                 HostUrl = "http://0.0.0.0:5000";
             }
-            
+
+            InitializePins();
+
             BuildWebHost(args).Run();
         }
 
@@ -51,5 +55,20 @@ namespace LampWebApi
                 .UseUrls(HostUrl)
                 .UseStartup<Startup>()
                 .Build();
+        
+        private static void InitializePins()
+        {
+            var redPin = Pi.Gpio[RedPin];
+            var greenPin = Pi.Gpio[GreenPin];
+            var bluePin = Pi.Gpio[BluePin];
+
+            redPin.PinMode = GpioPinDriveMode.Output;
+            greenPin.PinMode = GpioPinDriveMode.Output;
+            bluePin.PinMode = GpioPinDriveMode.Output;
+
+            redPin.StartSoftPwm(0, 255);
+            greenPin.StartSoftPwm(0, 255);
+            bluePin.StartSoftPwm(0, 255);
+        }
     }
 }
