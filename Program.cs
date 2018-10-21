@@ -29,15 +29,15 @@ namespace LampWebApi
 
             if (!int.TryParse(configuration["redpin"], out RedPin))
             {
-                RedPin = 17;
+                RedPin = 0;
             }
             if (!int.TryParse(configuration["greenpin"], out GreenPin))
             {
-                GreenPin = 22;
+                GreenPin = 3;
             }
             if (!int.TryParse(configuration["bluepin"], out BluePin))
             {
-                BluePin = 24;
+                BluePin = 5;
             }
 
             if (string.IsNullOrEmpty(HostUrl))

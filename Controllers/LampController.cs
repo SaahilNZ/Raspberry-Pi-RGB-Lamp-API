@@ -26,7 +26,7 @@ namespace LampWebApi.Controllers
         [HttpPut()]
         public void Post([FromBody]string value)
         {
-
+            
         }
     }
 }
