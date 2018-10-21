@@ -12,13 +12,26 @@ namespace LampWebApi
 {
     public class Program
     {
+        static string hostUrl;
+
         public static void Main(string[] args)
         {
+            var configuration = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .Build();
+            
+            hostUrl = configuration["hosturl"];
+            if (string.IsNullOrEmpty(hostUrl))
+            {
+                hostUrl = "http://0.0.0.0:5000";
+            }
+
             BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls(hostUrl)
                 .UseStartup<Startup>()
                 .Build();
     }
