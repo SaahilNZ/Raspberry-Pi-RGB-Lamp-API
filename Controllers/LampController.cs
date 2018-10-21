@@ -15,11 +15,15 @@ namespace LampWebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            int scaledRed = (Pi.Gpio[Program.RedPin].SoftPwmValue * 255) / 100;
+            int scaledGreen = (Pi.Gpio[Program.GreenPin].SoftPwmValue * 255) / 100;
+            int scaledBlue = (Pi.Gpio[Program.BluePin].SoftPwmValue * 255) / 100;
+
             return Ok(new LampResponse()
             {
-                Red = Pi.Gpio[Program.RedPin].SoftPwmValue,
-                Green = Pi.Gpio[Program.GreenPin].SoftPwmValue,
-                Blue = Pi.Gpio[Program.BluePin].SoftPwmValue
+                Red = scaledRed,
+                Green = scaledGreen,
+                Blue = scaledBlue
             });
         }
 
