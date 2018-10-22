@@ -1,0 +1,26 @@
+#header {
+    margin-top: 1em;
+}
+
+#colourPicker{
+    margin-top: 2em;
+    width: 500px;
+    height: auto;
+    max-width: 80%;
+}
+
+#swatch {
+    margin-top: 1em;
+    width: 448px;
+    height: 2em;
+    max-width: 72%;
+    border-radius: 6px;
+}
+
+#btnSetColour {
+    margin-top: 1em;
+}
+
+#footer {
+    margin-top: 3em;
+}

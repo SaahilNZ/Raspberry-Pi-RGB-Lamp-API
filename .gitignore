@@ -4,6 +4,11 @@ project.lock.json
 .DS_Store
 *.pyc
 
+# Web
+node_modules/
+wwwroot/css/
+wwwroot/js/
+
 # Visual Studio Code
 .vscode
 

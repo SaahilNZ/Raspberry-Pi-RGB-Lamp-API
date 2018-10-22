@@ -8,8 +8,8 @@ namespace LampWebApi
         [JsonProperty]
         public int Red;
         [JsonProperty]
-        public int Blue;
-        [JsonProperty]
         public int Green;
+        [JsonProperty]
+        public int Blue;
     }
 }
