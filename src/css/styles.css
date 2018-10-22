@@ -1,3 +1,7 @@
+#header {
+    margin-top: 1em;
+}
+
 #colourPicker{
     margin-top: 2em;
     width: 500px;
@@ -15,4 +19,8 @@
 
 #btnSetColour {
     margin-top: 1em;
+}
+
+#footer {
+    margin-top: 3em;
 }
