@@ -16,16 +16,15 @@
         "inputFiles": [
             "node_modules/bootstrap/dist/css/bootstrap.min.css",
             "node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-            "node_modules/bootstrap/dist/css/bootstrap-reboot.min.css",
-            "node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css"
+            "node_modules/bootstrap/dist/css/bootstrap-reboot.min.css"
         ]
     },
     {
         "outputFileName": "wwwroot/js/vendor.min.js",
         "inputFiles": [
             "node_modules/jquery/dist/jquery.min.js",
-            "node_modules/bootstrap/dist/js/bootstrap.min.js",
-            "node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"
+            "node_modules/@jaames/iro/dist/iro.js",
+            "node_modules/bootstrap/dist/js/bootstrap.min.js"
         ]
     }
 ]
